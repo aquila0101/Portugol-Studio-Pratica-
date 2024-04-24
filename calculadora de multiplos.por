@@ -6,7 +6,6 @@ programa
 	
 		// Declaração de variáveis
    inteiro num1, num2, num3
-   cadeia resposta
 
    // Entrada de dados
    escreva("Informe o primeiro número: ")
@@ -20,7 +19,7 @@ programa
 
    se(num1==num2 ou num1==num3 ou num1%num2>0 ou num1%num3>0)
    {
-   	escreva(num1," Não è Multiplo de ",num2,"\n")
+   	escreva(num1," Não è Multiplo de ",num3,"\n")
    }
    senao se(num2==num1 ou num2==num3 ou num2%num1>0 ou num2%num3>0)
    {
@@ -36,15 +35,15 @@ programa
 	
    se(num1==num2 ou num1==num3 ou num1%num2==0 ou num1%num3==0)
    {
-   	escreva("È multiplo de ","\n")
+   	escreva(num1," È multiplo de ",num3,"\n")
    }
    	se(num2==num1 ou num2==num3 ou num2%num1==0 ou num2%num3==0)
    {
-   	escreva(" È Multiplo de ","\n")
+   	escreva(num2," È Multiplo de ",num3,"\n")
    }
    	se(num3==num1 ou num3==num2 ou num3%num1==0 ou num3%num2==0)
    {
-   	escreva(" È Multiplo de ","\n")
+   	escreva(num3," È Multiplo de ",num2,"\n")
    }
      
 

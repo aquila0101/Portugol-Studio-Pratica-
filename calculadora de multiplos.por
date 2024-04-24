@@ -1,7 +1,6 @@
 programa
 {
-	inclua biblioteca Matematica
-	
+		
 	funcao inicio()
 	{
 	

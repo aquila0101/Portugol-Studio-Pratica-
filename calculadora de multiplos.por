@@ -1,6 +1,4 @@
-programa
-{
-		
+	
 	funcao inicio()
 	{
 	
@@ -48,4 +46,4 @@ programa
      
 
 	}
-}
+

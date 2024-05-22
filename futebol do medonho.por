@@ -4,8 +4,7 @@ programa
 	inclua biblioteca Tipos --> p
 	inclua biblioteca Util --> u
 	inclua biblioteca Texto --> t
-	inclua biblioteca Matematica
- --> m
+	inclua biblioteca Matematica --> m
 	
 inteiro pont[6],i,result[6][6]
 	cadeia club[8]

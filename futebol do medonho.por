@@ -33,7 +33,7 @@ programa
         escreva("\nTabela de Pontos:\n")
         para (inteiro i = 0; i < 7; i++) {
             // Lógica para calcular pontos a partir dos gols em golsIda e golsVolta
-            // ... (implemente a lógica de acordo com as regras do campeonato)
+            
             escreva(clubes[i], ": ", pontosTotais[i], " pontos\n") 
         }
     }

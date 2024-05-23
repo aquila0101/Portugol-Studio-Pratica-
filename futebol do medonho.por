@@ -1,53 +1,33 @@
 programa
 {
-	
-	inclua biblioteca Util --> u
-	
-		inteiro pont[8],i,result[8],pont2[8]
-		cadeia club[8],tabela1[8]
-	funcao inicio()
-	{
-	
-		
-		// Times No Campeonato
-		club[0] = "Clube A"
-		club[1] = "Clube B"
-		club[2] = "Clube C"
-		club[3] = "Clube D"
-		club[4] = "Clube E"
-		club[5] = "Clube F"
-		club[6] = "MEDFC"
+    inclua biblioteca Util --> u
 
-		escreva("Bem Vindo ao Campeonato do Medonho")
-		//u.aguarde(4500)
-		limpa()
-		escreva("Escreva a Seguir a Quantidade de Gol de Cada Time ; )" )
-		//u.aguarde(4500)
-		limpa()
+    cadeia clubes[7] = {"Clube A", "Clube B", "Clube C", "Clube D", "Clube E", "Clube F", "MEDFC"}
+    inteiro pontosIda[7], pontosVolta[7], pontosTotais[7]
 
-		para(i=0;i<6;i++)
-		{
-			escreva("Rodada Nº ",i+1," (Ida) ",club[6]," VS ",club[i],": ")
-			leia(pont[6])
+    funcao inicio()
+    {
+        escreva("Bem Vindo ao Campeonato do Medonho\n\n")
 
-				
-		}
-			limpa()
-		para(i=0; i<6; i++)
-			{
+        // Rodadas de Ida
+        escreva("Rodadas de Ida:\n")
+        para (inteiro i = 0; i < 6; i++) {
+            escreva("Rodada ", i + 1, ": MEDFC vs ", clubes[i], ": ")
+            leia(pontosIda[6]) // Pontos do MEDFC
+        }
 
-			escreva("Rodada Nº ",i+1," (Volta) ",club[i]," VS ",club[6],": ")
-			leia(pont2[i])
-			
-			}
-			limpa()
-			
-		para(i=0; i<7; i++){
-			result[i]= pont2[i]+pont[i]
-			escreva(club[i], " Pontos ", result[i],"\n")
-			}
-	}
-	
-	
-	
+        // Rodadas de Volta
+        escreva("\nRodadas de Volta:\n")
+        para (inteiro i = 0; i < 6; i++) {
+            escreva("Rodada ", i + 1, ": ", clubes[i], " vs MEDFC: ")
+            leia(pontosVolta[i]) // Pontos dos outros clubes
+        }
+
+        // Calcula e exibe os pontos totais
+        escreva("\nTabela de Pontos:\n")
+        para (inteiro i = 0; i < 7; i++) {
+            pontosTotais[i] = pontosIda[i] + pontosVolta[i]
+            escreva(clubes[i], ": ", pontosTotais[i], " pontos\n")
+        }
+    }
 }

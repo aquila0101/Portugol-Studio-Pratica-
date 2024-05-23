@@ -32,7 +32,7 @@ programa
         // Calcula e exibe os pontos totais (lógica para cálculo de pontos a partir dos gols)
         escreva("\nTabela de Pontos:\n")
         para (inteiro i = 0; i < 7; i++) {
-            // Lógica para calcular pontos a partir dos gols em golsIda e golsVolta
+            
             
             escreva(clubes[i], ": ", pontosTotais[i], " pontos\n") 
         }

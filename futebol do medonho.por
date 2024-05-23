@@ -26,14 +26,14 @@ programa
 	//u.aguarde(4500)
 	limpa()
 
-	para(i=0;i<5;i++){
+	para(i=0;i<6;i++){
 		escreva("Rodada Nº ",i+1," (Ida) ",club[6]," VS ",club[i],": ")
 		leia(pont[6])
 
 				
 		}
 		limpa()
-		para(i=0; i<5; i++){
+		para(i=0; i<6; i++){
 
 			escreva("Rodada Nº ",i+1," (Volta) ",club[i]," VS ",club[6],": ")
 			leia(pont2[i])

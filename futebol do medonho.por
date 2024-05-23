@@ -5,8 +5,8 @@ programa
 	inclua biblioteca Util --> u
 	inclua biblioteca Texto --> t
 	inclua biblioteca Matematica --> m
-	inteiro pont[8],i,result[6][6]
-	cadeia club[8]
+	inteiro pont[6],i,result[6],pont2[6]
+	cadeia club[7]
 	cadeia tabela1[6][6]
 	funcao inicio()
 	{
@@ -19,21 +19,28 @@ programa
 	club[3] = "Clube D"
 	club[4] = "Clube E"
 	club[5] = "Clube F"
-	club[6] = "Clube A"
-	club[7] = "MEDFC"
+	club[6] = "MEDFC"
 
 	escreva("Bem Vindo ao Campeonato do Medonho")
-	u.aguarde(4500)
+	//u.aguarde(4500)
 	limpa()
 	escreva("Escreva a Seguir a Quantidade de Gol de Cada Time ; )" )
-	u.aguarde(4500)
+	//u.aguarde(4500)
 	limpa()
 
-	para(i=0;i<8;i++){
-		escreva("Rodada Nº ",i+1," ",club[7]," VS ",club[i],": ")
+	para(i=0;i<6;i++){
+		escreva("Rodada Nº ",i+1," (Ida) ",club[6]," VS ",club[i],": ")
 		leia(pont[i])
-		
+
+				
 		}
+		para(i=0; i<5; i++){
+
+			escreva("Rodada Nº ",i+1," (Volta) ",club[i]," VS ",club[6],": ")
+			leia(pont2[i])
+			
+			}
+		
 	
 
 	

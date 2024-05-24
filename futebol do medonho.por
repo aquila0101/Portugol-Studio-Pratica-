@@ -1,9 +1,11 @@
 programa
 {
+	inclua biblioteca Matematica --> m
     inclua biblioteca Util --> u
 
     cadeia clubes[7] = {"Clube A", "Clube B", "Clube C", "Clube D", "Clube E", "Clube F", "MEDFC"}
-    inteiro golsMarcados[7][2], golsSofridos[7][2], saldoGols[7]
+    inteiro golsMarcadosIda[7], golsMarcadosVolta[7], golsSofridosIda[7], golsSofridosVolta[7]
+    inteiro saldoGols[7], golsFavorMEDFC, golsSofridosMEDFC
 
     funcao inicio()
     {
@@ -13,35 +15,46 @@ programa
         escreva("Rodadas de Ida:\n")
         para (inteiro i = 0; i < 6; i++) {
             escreva(clubes[i], " vs MEDFC:\n")
-            escreva("  Gols de ", clubes[i], ": ")
-            leia(golsMarcados[i][0])
-            escreva("  Gols do MEDFC: ")
-            leia(golsMarcados[6][0]) // Pontos do MEDFC
-            golsSofridos[i][0] = golsMarcados[6][0]
-            golsSofridos[6][0] = golsMarcados[i][0]
+            escreva("  Gols marcados por ", clubes[i], ": ")
+            leia(golsMarcadosIda[i])
+            escreva("  Gols marcados pelo MEDFC: ")
+            leia(golsMarcadosIda[6])
+            golsSofridosIda[i] = golsMarcadosIda[6]
+            golsSofridosIda[6] = golsMarcadosIda[i]
         }
 
         // Rodadas de Volta
         escreva("\nRodadas de Volta:\n")
         para (inteiro i = 0; i < 6; i++) {
             escreva("MEDFC vs ", clubes[i], ":\n")
-            escreva("  Gols do MEDFC: ")
-            leia(golsMarcados[6][1])
-            escreva("  Gols de ", clubes[i], ": ")
-            leia(golsMarcados[i][1])
-            golsSofridos[i][1] = golsMarcados[6][1]
-            golsSofridos[6][1] = golsMarcados[i][1]
+            escreva("  Gols marcados pelo MEDFC: ")
+            leia(golsMarcadosVolta[6])
+            escreva("  Gols marcados por ", clubes[i], ": ")
+            leia(golsMarcadosVolta[i])
+            golsSofridosVolta[i] = golsMarcadosVolta[6]
+            golsSofridosVolta[6] = golsMarcadosVolta[i]
         }
 
-        // Calcula Saldo de Gols e exibe a tabela
+        // Calcula saldo de gols
         escreva("\nTabela de Saldo de Gols:\n")
-        escreva("Clube | Gols Marcados | Gols Sofridos | Saldo de Gols\n")
-        escreva("------------------------------------------------\n")
         para (inteiro i = 0; i < 7; i++) {
-            inteiro totalGolsMarcados = golsMarcados[i][0] + golsMarcados[i][1]
-            inteiro totalGolsSofridos = golsSofridos[i][0] + golsSofridos[i][1]
-            saldoGols[i] = totalGolsMarcados - totalGolsSofridos
-            escreva(clubes[i], " | ", totalGolsMarcados, " | ", totalGolsSofridos, " | ", saldoGols[i], "\n")
+            saldoGols[i] = (golsMarcadosIda[i] + golsMarcadosVolta[i]) - (golsSofridosIda[i] + golsSofridosVolta[i])
+            escreva(clubes[i], ": ", saldoGols[i], "\n")
         }
+
+        // Calcula gols do MEDFC
+        golsFavorMEDFC = 0
+        golsSofridosMEDFC = 0
+        para (inteiro i = 0; i < 6; i++) {
+            golsFavorMEDFC += golsMarcadosIda[6] + golsMarcadosVolta[6]
+            golsSofridosMEDFC += golsSofridosIda[6] + golsSofridosVolta[6]
+        }
+
+        // Exibe estatísticas do MEDFC
+        escreva("\nEstatísticas do MEDFC:\n")
+        escreva("  Gols a favor: ", golsFavorMEDFC, "\n")
+        escreva("  Gols sofridos: ", golsSofridosMEDFC, "\n")
+        escreva("  Média de gols a favor: ", m.arredondar(golsFavorMEDFC / 12.0, 2), "\n") // 12 jogos no total
+        escreva("  Média de gols sofridos: ", m.arredondar(golsSofridosMEDFC / 12.0, 2), "\n")
     }
 }

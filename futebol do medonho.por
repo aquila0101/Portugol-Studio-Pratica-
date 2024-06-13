@@ -17,9 +17,9 @@ programa
         para (inteiro i = 0; i < 6; i++) {
             escreva("Rodada ", i + 1, ": MEDFC vs ", clubes[i], ":\n")
             escreva("  Gols do MEDFC: ")
-            leia(golsMarcadosIda[6])
+            leia(golsMarcadosIda[i])
             escreva("  Gols do ", clubes[i], ": ")
-            leia(golsSofridosIda[6])
+            leia(golsSofridosIda[i])
         }
 
         // Rodadas de Volta
@@ -41,10 +41,11 @@ programa
             totalGolsMarcados += golsMarcadosIda[i] + golsMarcadosVolta[i]
             totalGolsSofridos += golsSofridosIda[i] + golsSofridosVolta[i]
 
+		para(i = 0; i < 7; i++)
             se (i < 6) { // Exclui o próprio MEDFC da contagem de vitórias/empates/derrotas
-                se (golsMarcadosIda[6] > golsSofridosIda[6]) {
+                se (golsMarcadosIda[i] > golsSofridosIda[i]) {
                     vitoriasMEDFC++
-                } senao se (golsMarcadosIda[6] == golsSofridosIda[6]) {
+                } senao se (golsMarcadosIda[i] == golsSofridosIda[i]) {
                     empatesMEDFC++
                 } senao {
                     derrotasMEDFC++

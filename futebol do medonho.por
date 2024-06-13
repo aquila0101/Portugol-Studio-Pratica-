@@ -4,7 +4,7 @@ programa
     inclua biblioteca Util --> u
 
     cadeia clubes[7] = {"Clube A", "Clube B", "Clube C", "Clube D", "Clube E", "Clube F", "MEDFC"}
-    inteiro golsMarcadosIda[7], golsMarcadosVolta[7], golsSofridosIda[7], golsSofridosVolta[7]
+    inteiro golsMarcadosIda[7], golsMarcadosVolta[7], golsSofridosIda[7], golsSofridosVolta[7], i
     inteiro saldoGols[7], totalGolsMarcados = 0, totalGolsSofridos = 0
     inteiro vitoriasMEDFC = 0, empatesMEDFC = 0, derrotasMEDFC = 0
 
@@ -14,7 +14,7 @@ programa
 
         // Rodadas de Ida
         escreva("Rodadas de Ida:\n")
-        para (inteiro i = 0; i < 6; i++) {
+        para (i = 0; i < 6; i++) {
             escreva("Rodada ", i + 1, ": MEDFC vs ", clubes[i], ":\n")
             escreva("  Gols do MEDFC: ")
             leia(golsMarcadosIda[i])
@@ -24,7 +24,7 @@ programa
 
         // Rodadas de Volta
         escreva("\nRodadas de Volta:\n")
-        para (inteiro i = 0; i < 6; i++) {
+        para (i = 0; i < 6; i++) {
             escreva("Rodada ", i + 1, ": ", clubes[i], " vs MEDFC:\n")
             escreva("  Gols do ", clubes[i], ": ")
             leia(golsMarcadosVolta[i])
@@ -34,12 +34,13 @@ programa
 
         // Calcula saldo de gols, total de gols e estatísticas do MEDFC
         escreva("\nTabela de Saldo de Gols:\n")
-        para (inteiro i = 0; i < 7; i++) {
+        para (i = 0; i < 7; i++) {
             saldoGols[i] = (golsMarcadosIda[i] + golsMarcadosVolta[i]) - (golsSofridosIda[i] + golsSofridosVolta[i])
-            escreva(clubes[i], ": ", saldoGols[i], "\n")
+            escreva("\n",clubes[i], ": ", saldoGols[i])
 
             totalGolsMarcados += golsMarcadosIda[i] + golsMarcadosVolta[i]
             totalGolsSofridos += golsSofridosIda[i] + golsSofridosVolta[i]
+            }
 
 		para(i = 0; i < 7; i++)
             se (i < 6) { // Exclui o próprio MEDFC da contagem de vitórias/empates/derrotas
@@ -51,7 +52,7 @@ programa
                     derrotasMEDFC++
                 }
             }
-        }
+        
 
         // Exibe estatísticas do MEDFC
         escreva("\nEstatísticas do MEDFC:\n")

@@ -3,75 +3,93 @@ programa
 	inclua biblioteca Matematica --> m
     inclua biblioteca Util --> u
 
-    cadeia clubes[7] = {"Clube A", "Clube B", "Clube C", "Clube D", "Clube E", "Clube F", "MEDFC"}
-    inteiro golsMarcadosIda[7], golsMarcadosVolta[7], golsSofridosIda[7], golsSofridosVolta[7], i
-    inteiro saldoGols[7], totalGolsMarcados = 0, totalGolsSofridos = 0
-    inteiro vitoriasMEDFC = 0, empatesMEDFC = 0, derrotasMEDFC = 0
+    cadeia clubes[6] = {"Flamengo", "Vasco", "Fluminense", "Botafogo", "Bangu", "Madureira"}
+    inteiro golsMarcados[6], golsSofridos[6], i
+    cadeia resultados[6]
+    inteiro pontos[6], totalPontos = 0
 
     funcao inicio()
     {
-        escreva("Bem Vindo ao Campeonato do Medonho\n\n")
-
-        // Rodadas de Ida
-        escreva("Rodadas de Ida:\n")
+        // Entrada de dados dos jogos
         para (i = 0; i < 6; i++) {
-            escreva("Rodada ", i + 1, ": MEDFC vs ", clubes[i], ":\n")
+            escreva("Jogo ", i + 1, ": MEDFC vs ", clubes[i], ":\n")
             escreva("  Gols do MEDFC: ")
-            leia(golsMarcadosIda[i])
+            leia(golsMarcados[i])
             escreva("  Gols do ", clubes[i], ": ")
-            leia(golsSofridosIda[i])
-        }
+            leia(golsSofridos[i])
 
-        // Rodadas de Volta
-        escreva("\nRodadas de Volta:\n")
-        para (i = 0; i < 6; i++) {
-            escreva("Rodada ", i + 1, ": ", clubes[i], " vs MEDFC:\n")
-            escreva("  Gols do ", clubes[i], ": ")
-            leia(golsMarcadosVolta[i])
-            escreva("  Gols do MEDFC: ")
-            leia(golsSofridosVolta[i])
-        }
-
-        // Calcula saldo de gols, total de gols e estatísticas do MEDFC
-        escreva("\nTabela de Saldo de Gols:\n")
-        para (i = 0; i < 7; i++) {
-            saldoGols[i] = (golsMarcadosIda[i] + golsMarcadosVolta[i]) - (golsSofridosIda[i] + golsSofridosVolta[i])
-            escreva("\n",clubes[i], ": ", saldoGols[i])
-
-            totalGolsMarcados += golsMarcadosIda[i] + golsMarcadosVolta[i]
-            totalGolsSofridos += golsSofridosIda[i] + golsSofridosVolta[i]
+            // Calcula resultado e pontos
+            se (golsMarcados[i] > golsSofridos[i]) {
+                resultados[i] = "Vitória"
+                pontos[i] = 3
+            } senao se (golsMarcados[i] == golsSofridos[i]) {
+                resultados[i] = "Empate"
+                pontos[i] = 1
+            } senao {
+                resultados[i] = "Derrota"
+                pontos[i] = 0
             }
 
-		para(i = 0; i < 7; i++)
-            se (i < 6) { // Exclui o próprio MEDFC da contagem de vitórias/empates/derrotas
-                se (golsMarcadosIda[i] > golsSofridosIda[i]) {
-                    vitoriasMEDFC++
-                } senao se (golsMarcadosIda[i] == golsSofridosIda[i]) {
-                    empatesMEDFC++
-                } senao {
-                    derrotasMEDFC++
-                }
+            totalPontos += pontos[i]
+        }
+
+        // Calcula desempenho
+        inteiro totalGolsMarcados = 0, totalGolsSofridos = 0, maiorGolsMarcados = golsMarcados[0], menorGolsMarcados = golsMarcados[0]
+        para (i = 0; i < 6; i++) {
+            totalGolsMarcados += golsMarcados[i]
+            totalGolsSofridos += golsSofridos[i]
+
+            se (golsMarcados[i] > maiorGolsMarcados) {
+                maiorGolsMarcados = golsMarcados[i]
             }
-        
+            se (golsMarcados[i] < menorGolsMarcados) {
+                menorGolsMarcados = golsMarcados[i]
+            }
+        }
+        real mediaGolsMarcados = m.arredondar(totalGolsMarcados / 6.0, 1)
+        real mediaGolsSofridos = m.arredondar(totalGolsSofridos / 6.0, 1)
 
-        // Exibe estatísticas do MEDFC
-        escreva("\nEstatísticas do MEDFC:\n")
-        escreva("  Total de gols a favor: ", totalGolsMarcados, "\n")
-        escreva("  Total de gols sofridos: ", totalGolsSofridos, "\n")
-        escreva("  Saldo de gols: ", totalGolsMarcados - totalGolsSofridos, "\n")
-        escreva("  Média de gols a favor: ", m.arredondar(totalGolsMarcados / 12.0, 2), "\n") // 12 jogos no total
-        escreva("  Média de gols sofridos: ", m.arredondar(totalGolsSofridos / 12.0, 2), "\n")
+        // Calcula campanha
+        inteiro vitorias = 0, empates = 0, derrotas = 0
+        para (i = 0; i < 6; i++) {
+            se (resultados[i] == "Vitória") {
+                vitorias++
+            } senao se (resultados[i] == "Empate") {
+                empates++
+            } senao {
+                derrotas++
+            }
+        }
 
-        // Exibe estatísticas de vitórias/empates/derrotas
-        escreva("\nVitórias, Empates e Derrotas do MEDFC:\n")
-        escreva("  Vitórias: ", vitoriasMEDFC, "\n")
-        escreva("  Empates: ", empatesMEDFC, "\n")
-        escreva("  Derrotas: ", derrotasMEDFC, "\n")
+        // Calcula porcentagens
+        real percentualVitorias = m.arredondar(vitorias * 100.0 / 6, 1)
+        real percentualEmpates = m.arredondar(empates * 100.0 / 6, 1)
+        real percentualDerrotas = m.arredondar(derrotas * 100.0 / 6, 1)
 
-        // Calcula e exibe porcentagens
+        // Apresentação dos Resultados (sem usar tabelas, apenas texto formatado)
+        escreva("\nResultados dos Jogos:\n")
+        para (i = 0; i < 6; i++) {
+            escreva("MEDFC", " | ", golsMarcados[i], " x ", golsSofridos[i], " | ", clubes[i], " | ", resultados[i], " | ", pontos[i], "\n")
+        }
+
+        escreva("\nTotal de Pontos: ", totalPontos, "\n")
+
+        escreva("\nDesempenho:\n")
+        escreva("Gols a Favor: ", totalGolsMarcados, "\n")
+        escreva("Gols Sofridos: ", totalGolsSofridos, "\n")
+        escreva("Média de Gols a Favor: ", mediaGolsMarcados, "\n")
+        escreva("Média de Gols Sofridos: ", mediaGolsSofridos, "\n")
+        escreva("Maior Quantidade de Gols a Favor: ", maiorGolsMarcados, "\n")
+        escreva("Menor Quantidade de Gols a Favor: ", menorGolsMarcados, "\n")
+
+        escreva("\nCampanha:\n")
+        escreva("Vitórias: ", vitorias, "\n")
+        escreva("Empates: ", empates, "\n")
+        escreva("Derrotas: ", derrotas, "\n")
+
         escreva("\nPorcentagens:\n")
-        escreva("  Vitórias: ", m.arredondar(vitoriasMEDFC * 100.0 / 6, 2), "%\n") // 6 jogos contra outros clubes
-        escreva("  Empates: ", m.arredondar(empatesMEDFC * 100.0 / 6, 2), "%\n")
-        escreva("  Derrotas: ", m.arredondar(derrotasMEDFC * 100.0 / 6, 2), "%\n")
+        escreva("Vitórias: ", percentualVitorias, "%\n")
+        escreva("Empates: ", percentualEmpates, "%\n")
+        escreva("Derrotas: ", percentualDerrotas, "%\n")
     }
 }
